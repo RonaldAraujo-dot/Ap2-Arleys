@@ -1,0 +1,110 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <link rel="stylesheet" type="text/css" href="styles.css" />
+        <title>Listagem de produtos</title>
+    </h:head>
+    <h:body>
+        <h:form>
+            <h1>LISTAGEM DOS ENDEREÇOS CADASTRADOS</h1>
+            <h:commandButton value="VOLTAR" style="width: 100%" action="voltaParaIndex"/>
+            <h:commandButton value="CRIAR NOVO ENDEREÇO" style="width: 100%" action="#{enderecoController.prepararInclusao()}" />
+            <br/>
+            
+            <h:dataTable style="width: 100%"
+                         var="endereco"
+                         value="#{enderecoController.enderecos}"
+                         border="1"
+                         rowClasses="azul,verde"
+                         headerClass="cabecalho">
+                
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputLabel value="CÓDIGO"/>
+                    </f:facet>
+                    
+                    <h:outputLabel value="#{endereco.endereco_id}"/>                    
+                </h:column>
+                
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputLabel value="NOME"/>
+                    </f:facet>
+                    
+                    <h:outputLabel value="#{endereco.endereco}"/>                    
+                </h:column>
+                
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputLabel value="ENDEREÇO 2"/>
+                    </f:facet>
+                    
+                    <h:outputLabel value="#{endereco.endereco2}">
+                    </h:outputLabel> 
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputLabel value="BAIRRO"/>
+                    </f:facet>
+                    
+                    <h:outputLabel value="#{endereco.bairro}">
+                    </h:outputLabel> 
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputLabel value="CIDADE"/>
+                    </f:facet>
+                    
+                    <h:outputLabel value="#{endereco.cidade.cidade}">
+                    </h:outputLabel> 
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputLabel value="CEP"/>
+                    </f:facet>
+                    
+                    <h:outputLabel value="#{endereco.cep}">
+                    </h:outputLabel> 
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputLabel value="TELEFONE"/>
+                    </f:facet>
+                    
+                    <h:outputLabel value="#{endereco.telefone}">
+                    </h:outputLabel> 
+                </h:column>
+                
+                
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputLabel value="AÇÃO"/>
+                    </f:facet>
+                    
+                    <h:commandLink value="Detalhe" action="vaiParaDetalhe">
+                        <f:setPropertyActionListener target="#{enderecoController.endereco}" value="#{endereco}" />
+                    </h:commandLink>
+                    
+                    <h:outputLabel value="|"/>
+                    <h:commandLink value="Editar" action="vaiParaEditar">
+                        <f:setPropertyActionListener target="#{enderecoController.endereco}" value="#{endereco}" />
+                    </h:commandLink>
+                    
+                    
+                    <h:outputLabel value="|"/>
+                    
+                    <h:commandLink value="Deletar" action="#{enderecoController.finalizaDelecao()}">
+                        <f:setPropertyActionListener target="#{enderecoController.endereco}" value="#{endereco}"/>
+                    </h:commandLink>
+                                      
+                </h:column>
+                
+            </h:dataTable>
+            
+        </h:form>
+    </h:body>
+</html>
+
